@@ -18,7 +18,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         JsonParser jp = new JsonParser();
 
-        String apiKey = "775dbf773d4aa324d7410628";
+        String apiKey = System.getenv("API_KEY");
         String strUrlApi = "https://v6.exchangerate-api.com/v6/"+ apiKey + "/pair/";
 
         Map<String, String> currencyCodes = new HashMap<>();
