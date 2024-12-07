@@ -7,9 +7,7 @@ import com.google.gson.JsonParser;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
 import java.net.URI;
-import java.net.URL;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
@@ -42,7 +40,6 @@ public class Main {
             System.out.println("Type corresponding amount");
             double qty = Double.parseDouble(scanner.next().trim());
             try {
-                URL urlApi = new URL(strUrlApi+from_choice+"/"+to_choice+"/"+qty);
                 HttpClient client = HttpClient.newHttpClient();
                 HttpRequest request = HttpRequest.newBuilder()
                         .uri(URI.create(strUrlApi+from_choice+"/"+to_choice+"/"+qty))
@@ -54,16 +51,16 @@ public class Main {
                 JsonObject jsonResponse = root.getAsJsonObject();
                 String strResponse = jsonResponse.get("conversion_result").getAsString();
                 System.out.println(strResponse + " " + to_choice);
-            } catch (IOException | InterruptedException e) {
-                throw new RuntimeException(e);
-            } finally {
                 System.out.println("Do you wish to continue? (Y/N)");
                 String flag = scanner.next();
-                if (flag.equalsIgnoreCase("y")){
-                    continue;
-                } else {
+                if (flag.equalsIgnoreCase("n")){
+                    System.out.println("Finalizing program...");
                     break;
+                } else if (!flag.equalsIgnoreCase("y")) {
+                    System.out.println("Invalid input. Finalizing program...");
                 }
+            } catch (IOException | InterruptedException e) {
+                throw new RuntimeException(e);
             }
 
         }
