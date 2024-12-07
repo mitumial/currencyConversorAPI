@@ -21,7 +21,7 @@ public class Main {
         String apiKey = "775dbf773d4aa324d7410628";
         String strUrlApi = "https://v6.exchangerate-api.com/v6/"+ apiKey + "/pair/";
 
-        Map<String, String> currencyCodes = new HashMap<String, String>();
+        Map<String, String> currencyCodes = new HashMap<>();
         currencyCodes.put("colombia","COP");
         currencyCodes.put("united states","USD");
         currencyCodes.put("argentina","ARS");
